@@ -21,3 +21,15 @@ variable "ingress_nginx_namespace" {
   description = "O nginx ingress namespace (Será criado se necessário)."
   default     = "ingress-nginx"
 }
+
+variable "k8dash_namespace" {
+  type        = string
+  description = "O namespace onde sera criado o dashboard (Será criado se necessário)."
+  default     = "kubernetes-dashboard"
+}
+
+variable "kubernetes_sa" {
+  type        = string
+  description = "Definição do sa para o Kubernetes Dashboard (Obrigatório)"
+  default     = "kubernetes-admin"
+}
