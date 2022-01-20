@@ -12,6 +12,3 @@ ingress:
     - /
 metricsScraper:
   enabled: false
-serviceAccount:
-  create: true
-  name: ${kubernetes_sa}
