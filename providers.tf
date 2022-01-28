@@ -1,21 +1,18 @@
 provider "kind" {
 }
 
-provider "kubernetes" {
-  config_path = pathexpand(var.kind_cluster_config_path)
-}
-
 provider "helm" {
   kubernetes {
-    config_path = pathexpand(var.kind_cluster_config_path)
+    host = kind_cluster.default.endpoint
+    client_certificate     = kind_cluster.default.client_certificate
+    client_key             = kind_cluster.default.client_key
+    cluster_ca_certificate = kind_cluster.default.cluster_ca_certificate
   }
 }
 
-## Criar aqui a conta secundária do K8s para criação do usuário do dash
-# provider "kubernetes" {
-#   alias = "post_install"
-# 
-#   host = ""
-#   cluster_ca_certificate = ""
-#   token = ""
-# }
+provider "kubernetes" {
+  host = kind_cluster.default.endpoint
+  client_certificate     = kind_cluster.default.client_certificate
+  client_key             = kind_cluster.default.client_key
+  cluster_ca_certificate = kind_cluster.default.cluster_ca_certificate
+}

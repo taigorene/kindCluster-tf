@@ -1,10 +1,3 @@
-resource "time_sleep" "wait_k8dash" {
-   depends_on = [
-     helm_release.k8dash
-   ]
-   create_duration = "10s"
- }
-
 resource "kubernetes_service_account" "sa" {
   metadata {
     name = var.kubernetes_sa
@@ -14,7 +7,7 @@ resource "kubernetes_service_account" "sa" {
     name = "${var.kubernetes_sa}"
   }
   depends_on = [
-    time_sleep.wait_k8dash
+    helm_release.k8dash
   ]
 }
 
@@ -25,12 +18,13 @@ data "kubernetes_secret" "sa" {
   }
 }
 
-output "sa_token" {
-  sensitive = true
-  value = lookup(data.kubernetes_secret.sa.data, "token")
+resource "local_file" "dash_token" {
+  content     = lookup(data.kubernetes_secret.sa.data, "token" , false)
+  filename = "${path.module}/dash_token"
 }
 
-resource "local_file" "dash_token" {
-    content     = lookup(data.kubernetes_secret.sa.data, "token")
-    filename = "${path.module}/dash_token"
+# Criar um arquivo de outputs
+output "sa_token" {
+  sensitive = true
+  value = lookup(data.kubernetes_secret.sa.data, "token" , false)
 }
