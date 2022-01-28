@@ -21,14 +21,14 @@ Clone o repo:
 # git clone https://github.com/taigorene/kindCluster-tf.git
 ```
 
-Então configure as vaiáveis como citado em [Notas](#notas), e então basta executar os comandos:
+Configure as variáveis como citado em [Notas](#notas), e então basta executar os comandos:
 ```
 # terraform init
 
 # terraform apply
 ```
     
-Após a execução (por padrão), será criado o arquivo de config na pasta `~/.kube/config` para acesso do cluster via `kubectl`, e também o arquivo `dash-token` contendo o token para acesso ao dashboard. O token também está disponível no output do terraform, sendo possível acessar via `terraform output`.
+Após a execução, será criado o arquivo de config na pasta `~/.kube/config` (por padrão) para acesso do cluster via `kubectl`, e também o arquivo `dash_token` contendo o token para acesso ao dashboard. O token também está disponível no output do terraform, sendo possível acessar via `terraform output`.
 > **Importante**: Não é recomendado salvar o token como arquivo, mas nesse caso, como é para **ESTUDO** assim o fazemos!
 
 O dashboard ficará disponível na URL [http://localhost](http://localhost).
