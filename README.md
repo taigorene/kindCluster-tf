@@ -33,6 +33,9 @@ Após a execução, será criado o arquivo de config na pasta `~/.kube/config` (
 
 O dashboard ficará disponível na URL [http://localhost](http://localhost).
 
-## Maintainer
+Também é criada uma pasta com nome `tmp_k8pv/` no mesmo diretório do script terraform (pode ser alterdo se preferir), que é mapeado para dentro do node master do kubernetes (no caminho `/pvs`), desse modo pode ser usado para teste de dados persistentes.
+> *NOTE: If you are using Docker for Mac or Windows check that the hostPath is included in the Preferences -> Resources -> File Sharing.*
+
+## Criado por
 Mantido por [Taígo](https://github.com/taigorene).
 Baseado na configuração do [Nick](https://nickjanetakis.com/blog/configuring-a-kind-cluster-with-nginx-ingress-using-terraform-and-helm), e remodelado para estudo e criação do cluster com dashboard e mais infos.

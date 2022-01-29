@@ -33,3 +33,9 @@ variable "kubernetes_sa" {
   description = "Definição do sa para o Kubernetes Dashboard (Obrigatório)"
   default     = "kubernetes-admin"
 }
+
+variable "host_kind_pv" {
+  type = string
+  description = "Nome e caminho da Pasta do host que irá ser mapeada para dentro do node master do kind em `/pvs`"
+  default = "tmp_k8pv/"
+}

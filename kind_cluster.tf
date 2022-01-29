@@ -21,6 +21,10 @@ resource "kind_cluster" "default" {
         container_port = 443
         host_port      = 443
       }
+      extra_mounts {
+        host_path = var.host_kind_pv
+        container_path = "/pvs"
+      }
     }
 
     node {
